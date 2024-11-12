@@ -1,0 +1,53 @@
+<div class="p-4" [formGroup]="userForm">
+    <p class="text-2xl font-semibold">Dependente:</p>
+
+    <div>
+        <button
+            class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white bg-green-600 hover:bg-green-500"
+            (click)="addDependent()"
+            >Novo Dependente</button>
+    </div>
+
+    <ng-container formArrayName="dependentsList">
+        <ng-container *ngFor="let dependent of dependentsList.controls; let i = index" [formGroupName]="i">
+            <div class="my-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
+
+                <mat-form-field class="w-full">
+                    <mat-label>Nome:</mat-label>
+                    <input matInput placeholder="Fulano" formControlName="name">
+                    <mat-error>O Nome é obrigatório</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field class="w-full">
+                    <mat-label>Idade:</mat-label>
+                    <input matInput placeholder="20" formControlName="age">
+                    <mat-error>O Idade é obrigatório</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field class="w-full">
+                    <mat-label>Documento:</mat-label>
+                    <input matInput placeholder="123.123.123.12" mask="000.000.000-00" formControlName="document">
+                    <mat-error *ngIf="dependent.get('document')?.hasError('required')">O Documento é obrigatório</mat-error>
+                    <mat-error *ngIf="dependent.get('document')?.hasError('mask')">O Documento é invalido</mat-error>
+                </mat-form-field>
+    
+                <div class="flex items-baseline box-border p-2 justify-center">
+                    <button
+                        class="
+                        rounded-md 
+                        px-3 py-2 
+                        text-lg 
+                        font-medium 
+                        leading-5 
+                        text-white 
+                        bg-red-600 
+                        hover:bg-red-500"
+                        (click)="removeDependent(i)"
+                        >Deletar</button>
+                </div>
+    
+            </div>
+            <hr class="sm:hidden">
+        </ng-container>
+    </ng-container>
+</div>

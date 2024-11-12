@@ -1,0 +1,51 @@
+    
+    <form [formGroup]="userForm">
+        <ng-container formGroupName="contactInformation">
+            <ng-container formArrayName="addressList">
+                <ng-container *ngFor="let address of addressList.controls; let i = index" [formGroupName]="i">
+                    <div class="my-4 grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-6">
+
+                        <mat-form-field class="w-full">
+                            <mat-label>Tipo:</mat-label>
+                            <input matInput formControlName="typeDescripitions">
+                        </mat-form-field>
+                
+                        <mat-form-field class="w-full">
+                            <mat-label>Rua:</mat-label>
+                            <input matInput formControlName="street">
+                            <mat-error>A Rua é obrigatória</mat-error>
+                        </mat-form-field>
+                
+                        <mat-form-field class="w-full">
+                            <mat-label>Complemento:</mat-label>
+                            <input matInput formControlName="complement">
+                            <mat-error>A Complemento é obrigatória</mat-error>
+                        </mat-form-field>
+                
+                        <mat-form-field class="w-full">
+                            <mat-label>País:</mat-label>
+                            <input matInput formControlName="country">
+                            <mat-error>A País é obrigatória</mat-error>
+                        </mat-form-field>
+                
+                        <mat-form-field class="w-full">
+                            <mat-label>Estado:</mat-label>
+                            <input matInput formControlName="state">
+                            <mat-error>A Estado é obrigatória</mat-error>
+                        </mat-form-field>
+                
+                        <mat-form-field class="w-full">
+                            <mat-label>Cidade:</mat-label>
+                            <input matInput formControlName="city">
+                            <mat-error>A Cidade é obrigatória</mat-error>
+                        </mat-form-field>
+                        
+                    </div>
+                
+                    <hr class="lg:hidden">
+                </ng-container>
+            </ng-container>
+        </ng-container>
+        
+    </form>
+
